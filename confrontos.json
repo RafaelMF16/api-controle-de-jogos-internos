@@ -1,0 +1,21 @@
+{
+    "confrontos": [
+        {
+            "data": "2024-12-08",
+            "partidas": [
+                {
+                    "timeA": "Time A",
+                    "timeB": "Time B",
+                    "horario": "14:00",
+                    "resultado": ""
+                },
+                {
+                    "timeA": "Time C",
+                    "timeB": "Time D",
+                    "horario": "16:00",
+                    "resultado": ""
+                }
+            ]
+        }
+    ]
+}
