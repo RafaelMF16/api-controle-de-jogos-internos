@@ -4,24 +4,36 @@ const fs = require('fs');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
-
+const corsOptions = {
+  origin: 'https://api-controle-de-jogos-internos.onrender.com',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions));
 
 // Configurações de autenticação
-const SECRET_KEY = 'sua_chave_secreta';
+const SECRET_KEY = 'faculdadepmsecretkey';
 const usuarios = [
   { username: 'admin', password: bcrypt.hashSync('FPM1234', 10) },
 ];
 
 // Função para verificar token JWT
 function verificarToken(req, res, next) {
-  const token = req.headers['authorization'];
-  if (!token) return res.status(403).send('Token não fornecido.');
+  const authHeader = req.headers['authorization'];
+  if (!authHeader) return res.status(403).send('Token não fornecido.');
+
+  // Extrai o token após o prefixo 'Bearer '
+  const token = authHeader.split(' ')[1];
+  if (!token) return res.status(403).send('Token malformado.');
+
   jwt.verify(token, SECRET_KEY, (err, decoded) => {
     if (err) return res.status(401).send('Token inválido.');
     req.user = decoded;
@@ -50,9 +62,17 @@ app.get('/confrontos', (req, res) => {
 
 // Rota para atualizar confrontos (somente a professora)
 app.post('/confrontos', verificarToken, (req, res) => {
-  const novosConfrontos = req.body;
+  const novosConfrontos = req.body.map(confronto => ({
+    data: confronto.Data,
+    partidas: confronto.Partidas.map(partida => ({
+      timeA: partida.TimeA,
+      timeB: partida.TimeB,
+      horario: partida.Horario,
+      resultado: partida.Resultado
+    }))
+  }));
 
-  fs.writeFileSync('confrontos.json', JSON.stringify(novosConfrontos, null, 2));
+  fs.writeFileSync('confrontos.json', JSON.stringify({ confrontos: novosConfrontos }, null, 2));
   res.send('Confrontos atualizados com sucesso!');
 });
 

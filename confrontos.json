@@ -1,21 +1,27 @@
 {
-    "confrontos": [
+  "confrontos": [
+    {
+      "data": "2024-12-12",
+      "partidas": [
         {
-            "data": "2024-12-08",
-            "partidas": [
-                {
-                    "timeA": "Time A",
-                    "timeB": "Time B",
-                    "horario": "14:00",
-                    "resultado": ""
-                },
-                {
-                    "timeA": "Time C",
-                    "timeB": "Time D",
-                    "horario": "16:00",
-                    "resultado": ""
-                }
-            ]
+          "timeA": "Real Madrid",
+          "timeB": "Barcelona",
+          "horario": "19:00",
+          "resultado": "4 x 2"
+        },
+        {
+          "timeA": "Napoli",
+          "timeB": "Milan",
+          "horario": "20:00",
+          "resultado": "5 x 2"
+        },
+        {
+          "timeA": "Furia",
+          "timeB": "Navi",
+          "horario": "22:00",
+          "resultado": "13 x 10"
         }
-    ]
+      ]
+    }
+  ]
 }
