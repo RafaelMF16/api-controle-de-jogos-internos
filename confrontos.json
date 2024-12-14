@@ -1,25 +1,13 @@
 {
   "confrontos": [
     {
-      "data": "2024-12-12",
+      "data": "2022-11-11",
       "partidas": [
         {
-          "timeA": "Real Madrid",
-          "timeB": "Barcelona",
-          "horario": "19:00",
-          "resultado": "4 x 2"
-        },
-        {
-          "timeA": "Napoli",
-          "timeB": "Milan",
-          "horario": "20:00",
-          "resultado": "5 x 2"
-        },
-        {
-          "timeA": "Furia",
-          "timeB": "Navi",
-          "horario": "22:00",
-          "resultado": "13 x 10"
+          "timeA": "banana",
+          "timeB": "maca",
+          "horario": "11:11",
+          "resultado": null
         }
       ]
     }

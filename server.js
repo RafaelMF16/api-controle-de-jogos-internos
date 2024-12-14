@@ -62,18 +62,18 @@ app.get('/confrontos', (req, res) => {
 
 // Rota para atualizar confrontos (somente a professora)
 app.post('/confrontos', verificarToken, (req, res) => {
-  const novosConfrontos = req.body.map(confronto => ({
-    data: confronto.Data,
-    partidas: confronto.Partidas.map(partida => ({
-      timeA: partida.TimeA,
-      timeB: partida.TimeB,
-      horario: partida.Horario,
-      resultado: partida.Resultado
-    }))
-  }));
+  try {
+    const novosConfrontos = req.body;
 
-  fs.writeFileSync('confrontos.json', JSON.stringify({ confrontos: novosConfrontos }, null, 2));
-  res.send('Confrontos atualizados com sucesso!');
+    // Salvar confrontos no arquivo
+    fs.writeFileSync('confrontos.json', JSON.stringify({ confrontos: [novosConfrontos] }, null, 2));
+
+    // Retornar um JSON de sucesso
+    res.json({ message: 'Confrontos atualizados com sucesso!' });
+  } catch (error) {
+    console.error('Erro ao atualizar confrontos:', error);
+    res.status(500).json({ message: 'Erro interno no servidor.' });
+  }
 });
 
 // Iniciar o servidor
