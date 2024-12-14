@@ -1,13 +1,15 @@
 {
   "confrontos": [
     {
-      "data": "2022-11-11",
+      "data": null,
       "partidas": [
         {
-          "timeA": "banana",
-          "timeB": "maca",
-          "horario": "11:11",
-          "resultado": null
+          "timeA": null,
+          "timeB": null,
+          "horario": null,
+          "resultado": null,
+          "modalidade": null,
+          "genero": null
         }
       ]
     }
